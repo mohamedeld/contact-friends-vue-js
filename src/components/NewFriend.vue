@@ -27,6 +27,7 @@ export default {
   methods: {
     sendData() {
       let userData = {
+        id:new Date().toISOString(),
         name: this.userName,
         phone: this.userPhone,
         email: this.userEmail,

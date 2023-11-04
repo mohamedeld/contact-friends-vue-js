@@ -4,7 +4,7 @@
       <h1>My Friends</h1>
     </header>
     <NewFriend @addNewFriend="testNewFriend"/>
-    <ul>
+    <ul v-if="friends.length > 0">
       <FriendContactVue
       v-for="friend in friends"
       :key="friend.id"
@@ -14,9 +14,11 @@
         :email="friend.email"
         :isFavorite="friend.isFavorite"
         @toggleFriendFavor="testFavorite"
+        @deleteSpecificFriend="testDeleteFriend"
       />
      
     </ul>
+    <p v-if="friends.length === 0">no friends found</p>
   </section>
 </template>
 
@@ -50,6 +52,10 @@ export default {
     },
     testNewFriend(data){
       this.friends.push(data);
+    },
+    testDeleteFriend(friendId){
+      const friendIndex = this.friends.findIndex(friend => friend.id === friendId);
+      this.friends.splice(friendIndex,1);
     }
   }
 };

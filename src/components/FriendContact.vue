@@ -13,6 +13,7 @@
         {{ email }}
       </li>
     </ul>
+    <button @click="deleteFriend">Delete</button>
   </li>
 </template>
 
@@ -53,8 +54,11 @@ export default {
     },
     toggleFavorite(){
       this.$emit('toggleFriendFavor',this.id)
+    },
+    deleteFriend(){
+      this.$emit('deleteSpecificFriend',this.id);
     }
   },
-  emits:['toggleFavorite']
+  emits:['toggleFavorite','deleteSpecificFriend']
 };
 </script>
